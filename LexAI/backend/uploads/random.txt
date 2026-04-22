@@ -1,0 +1,20 @@
+In Python, a method is a function that "belongs to" an object and is defined within a class. Methods are actions performed on an object and can access and modify the object's data (attributes).
+ 
+Key Concepts:
+Association with Objects: Methods are called using dot notation on an object instance, whereas a standard function is called by its name alone.
+self Parameter: When a method is called on an object, the object itself is automatically passed as the first argument to the method. This parameter is conventionally named self and allows the method to operate on that specific instance's data.
+Types of Methods:
+Instance Methods: The most common type, these operate on an instance of a class and take self as the first parameter. They are used to modify the specific object's state.
+Class Methods: Declared with the @classmethod decorator, these methods operate on the class itself, rather than an instance. They take class (by convention) as the first parameter and are useful for class-level data manipulation or alternative constructors.
+Static Methods: Declared with the @staticmethod decorator, these methods do not take self or cls as an implicit first argument. They are essentially normal functions logically grouped within a class. 
+
+Built-in Methods:
+Python includes many built-in methods for its core data types. 
+List Methods
+These methods modify lists in place or provide information about the list. 
+append(elem): Adds a single element to the end of the list.
+insert(index, elem): Inserts an element at a specific position.
+extend(list2): Adds elements from another iterable to the current list.
+remove(elem): Removes the first occurrence of a value.
+pop(index): Removes and returns the element at the specified index.
+sort(): Sorts the list in ascending order in place. 

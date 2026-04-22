@@ -1,0 +1,532 @@
+
+1. Suppose the content of JSON File 01 was in a file but in plain text. 
+A)What prompt would you write in ChatGPT to generate the answer similar or exactly as it is in the provided JSON?
+-I have a plain text file containing various types of questions, including multiple-choice (MCQs), true/false, and match-the-text questions. Convert this content into a structured JSON format with the following fields:
+	content_id
+	section_id
+	object_id
+	content_type
+	content
+The content field should include relevant subfields based on the content_type:
+
+For MCQs, include:
+
+question
+options (each option should have text, explanation, and isCorrect)
+For true/false questions, include a list of statements, each with:
+
+id
+statement
+trueStatement
+falseStatement
+isTrue
+For match-the-text questions, include:
+
+questions (each with id and text)
+answers (each with id and text)
+Additionally, include a totalCount field that represents the total number of content items.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+B)How would you optimize the prompt if the answer received by ChatGPT is not in the desired JSON format?
+- If the output is not in the desired JSON format, you can optimize the prompt by making it structured
+  1)Clearly specify JSON format.
+  2)Request valdations for correctness.
+  3)identify the content type, then structure it accordingly.step by step breakdown.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+C)Write a simple prompt to summarize the content of the file with 2 instructions from you. List the instructions.
+-This JSON file contains 7 fields. This fields are divided into three types of questions: 
+            mcq, truefalse, and matchtexts types questions. 
+              1. MCQs type question includes a question, multiple options with explanations, and 
+                 correctness. 
+              2. Truefalse questions include statements with explanations for both true and false 
+                   responses. 
+              3. Matchtexts includes list of question with their answer.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. From the provided JSON (File 01), answer the following:
+   A)How many content objects are there in total?
+   - 7 content objects
+
+   B)Which content_id corresponds to a true/false type content?
+   - content_id": 72,76
+
+
+   C)What is the question for the MCQ content with content_id: 74?
+   - It checks what is 2+2. If it corrects then it will show true.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. JSON Validation
+
+A)Are there any redundant fields or unnecessary nesting?
+-Yes, JSON contains redundant fields and unnecessary nesting.
+
+
+B)Are all fields named in a consistent and meaningful way?
+-Yes,  all fields named in a consistent and meaningful way
+
+C)Suggest optimizations or formatting improvements, if any.
+-JSON structure is well-organized, but it can be optimized for better readability, consistency, and efficiency.Unnecessary nesting, Redundant fields
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4. Using the JSON (File 01) data, perform the following transformations using JavaScript:
+
+A)Add a new content object of type mcq with custom data.
+-{
+    "id": 78,
+    "type": "multiple_choice",
+    "question": "Which planet is known as the Red Planet?",
+    "options": [
+        { "text": "Mars", "explanation": "Correct! Mars is known as the Red Planet due to its iron-rich soil.", "is_correct": true },
+        { "text": "Venus", "explanation": "Incorrect. Venus is known for its thick, toxic atmosphere.", "is_correct": false },
+        { "text": "Jupiter", "explanation": "Incorrect. Jupiter is the largest planet in the solar system.", "is_correct": false },
+        { "text": "Saturn", "explanation": "Incorrect. Saturn is famous for its rings.", "is_correct": false }
+    ]
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+B)Remove all contents from section_id: 11.
+-{
+    "contents": [
+        {
+            "content_id": 71,
+            "section_id": 10,
+            "object_id": 16,
+            "content_type": "mcq",
+            "content": {
+                "question": "What is the capital of France?",
+                "options": [ 
+                    {
+                        "text": "Paris",
+                        "explanation": "Correct! Paris is the capital of France.",
+                        "is_correct": true
+                    },
+                    {
+                        "text": "London",
+                        "explanation": "Incorrect. London is the capital of the United Kingdom.",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "Berlin",
+                        "explanation": "Incorrect. Berlin is the capital of Germany.",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "Rome",
+                        "explanation": "Incorrect. Rome is the capital of Italy.",
+                        "is_correct": false
+                    }
+                ]
+            }
+        },
+        {
+            "content_id": 72,
+            "section_id": 10,
+            "object_id": 13,
+            "content_type": "truefalse",
+            "content": {
+                "statements": [
+                    {
+                        "id": 1,
+                        "statement": "The Eiffel Tower is in France.",
+                        "true_statement": "Correct! The Eiffel Tower is located in Paris, France.",
+                        "false_statement": "Incorrect. The Eiffel Tower is indeed in France.",
+                        "is_true": true
+                    },
+                    {
+                        "id": 2,
+                        "statement": "The Great Wall of China is in Europe.",
+                        "true_statement": "Incorrect. The Great Wall of China is in Asia.",
+                        "false_statement": "Correct! The Great Wall of China is in Asia.",
+                        "is_true": false
+                    }
+                ]
+            }
+        },
+        {
+            "content_id": 73,
+            "section_id": 10,
+            "object_id": 12,
+            "content_type": "matchtexts",
+            "content": {
+                "questions": [
+                    { "id": 1, "text": "France" },
+                    { "id": 2, "text": "Eiffel Tower" },
+                    { "id": 3, "text": "China" },
+                    { "id": 4, "text": "Great Wall" }
+                ],
+                "answers": [
+                    { "id": 1, "text": "A country in Europe" },
+                    { "id": 2, "text": "A famous landmark in Paris" },
+                    { "id": 3, "text": "A country in Asia" },
+                    { "id": 4, "text": "A famous structure in China" }
+                ]
+            }
+        }
+    ],
+    "totalCount": 3
+}
+-Removed section Id 74,75,76,77
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+C)Change the question of the mcq content with content_id: 71 to: "What is the largest country by area?"
+-
+{
+    "contents": [
+        {
+            "content_id": 71,
+            "section_id": 10,
+            "object_id": 16,
+            "content_type": "mcq",
+            "content": {
+                "question": "What is the largest country by area?",
+
+                "options": [ 
+                    {
+                        "text": "Russia",
+                        "explanation": "Correct! Russia is the capital of France.",
+                        "is_correct": true
+                    },
+                    {
+                        "text": "London",
+                        "explanation": "Incorrect. London is the capital of the United Kingdom.",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "Berlin",
+                        "explanation": "Incorrect. Berlin is the capital of Germany.",
+                        "is_correct": false
+                    },
+                    {
+                        "text": "Rome",
+                        "explanation": "Incorrect. Rome is the capital of Italy.",
+                        "is_correct": false
+                    }
+                ]
+            }
+        },
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+D)Count the number of contents for each section_id.
+- 7, number of contents for each section_id
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5. Write a MySQL script for the following:
+
+A)Insert each content into its respective table based on content_type.
+- -- Insert into mcq_table
+INSERT INTO mcq_table (content_id, section_id, object_id, question, options)
+VALUES 
+(71, 10, 16, 'What is the largest country by area?', 
+ '[
+    {"text": "Paris", "explanation": "Correct! Paris is the capital of France.", "is_correct": true},
+    {"text": "London", "explanation": "Incorrect. London is the capital of the United Kingdom.", "is_correct": false},
+    {"text": "Berlin", "explanation": "Incorrect. Berlin is the capital of Germany.", "is_correct": false},
+    {"text": "Rome", "explanation": "Incorrect. Rome is the capital of Italy.", "is_correct": false}
+ ]');
+
+-- Insert into truefalse_table
+INSERT INTO truefalse_table (content_id, section_id, object_id, statement, true_statement, false_statement, is_true)
+VALUES 
+(72, 10, 13, 'The Eiffel Tower is in France.', 
+ 'Correct! The Eiffel Tower is located in Paris, France.', 
+ 'Incorrect. The Eiffel Tower is indeed in France.', true),
+(72, 10, 13, 'The Great Wall of China is in Europe.', 
+ 'Incorrect. The Great Wall of China is in Asia.', 
+ 'Correct! The Great Wall of China is in Asia.', false);
+
+-- Insert into matchtexts_table
+INSERT INTO matchtexts_table (content_id, section_id, object_id, questions, answers)
+VALUES 
+(73, 10, 12, 
+ '[
+    {"id": 1, "text": "France"},
+    {"id": 2, "text": "Eiffel Tower"},
+    {"id": 3, "text": "China"},
+    {"id": 4, "text": "Great Wall"}
+ ]',
+ '[
+    {"id": 1, "text": "A country in Europe"},
+    {"id": 2, "text": "A famous landmark in Paris"},
+    {"id": 3, "text": "A country in Asia"},
+    {"id": 4, "text": "A famous structure in China"}
+ ]');
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+B)Retrieve the object_id from the insert operation.
+--- Insert into mcq_table and get object_id
+INSERT INTO mcq_table (content_id, section_id, object_id, question, options)
+VALUES 
+(71, 10, 16, 'What is the largest country by area?', 
+ '[
+    {"text": "Paris", "explanation": "Correct! Paris is the capital of France.", "is_correct": true},
+    {"text": "London", "explanation": "Incorrect. London is the capital of the United Kingdom.", "is_correct": false},
+    {"text": "Berlin", "explanation": "Incorrect. Berlin is the capital of Germany.", "is_correct": false},
+    {"text": "Rome", "explanation": "Incorrect. Rome is the capital of Italy.", "is_correct": false}
+ ]');
+
+SELECT LAST_INSERT_ID() AS object_id;
+
+-- Insert into truefalse_table and get object_id
+INSERT INTO truefalse_table (content_id, section_id, object_id, statement, true_statement, false_statement, is_true)
+VALUES 
+(72, 10, 13, 'The Eiffel Tower is in France.', 
+ 'Correct! The Eiffel Tower is located in Paris, France.', 
+ 'Incorrect. The Eiffel Tower is indeed in France.', true);
+
+SELECT LAST_INSERT_ID() AS object_id;
+
+-- Insert into matchtexts_table and get object_id
+INSERT INTO matchtexts_table (content_id, section_id, object_id, questions, answers)
+VALUES 
+(73, 10, 12, 
+ '[
+    {"id": 1, "text": "France"},
+    {"id": 2, "text": "Eiffel Tower"},
+    {"id": 3, "text": "China"},
+    {"id": 4, "text": "Great Wall"}
+ ]',
+ '[
+    {"id": 1, "text": "A country in Europe"},
+    {"id": 2, "text": "A famous landmark in Paris"},
+    {"id": 3, "text": "A country in Asia"},
+    {"id": 4, "text": "A famous structure in China"}
+ ]');
+
+SELECT LAST_INSERT_ID() AS object_id;
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+C)Insert the content metadata (content_id, section_id, object_id, content_type) into the contents table.
+-INSERT INTO contents (content_id, section_id, object_id, content_type)
+VALUES 
+    (71, 10, 16, 'mcq'),
+    (72, 10, 13, 'truefalse'),
+    (73, 10, 12, 'matchtexts');
+SELECT * FROM contents;   to check if the data has been inserted correctly.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+6. Refer to JSON File 02. JSON Data Cleanup Task.
+Task:
+A)Identify and correct all syntax errors in the provided JSON file.
+	-1){
+    		"text": "Apple",
+    		"explanation": "Correct! Apples are the most widely consumed fruit.",
+    		"isCorrect": true
+	}
+
+	2){
+    		"text": "Orange",
+    		"explanation": "Incorrect. Oranges are a popular citrus fruit.",
+    		"isCorrect": false
+	}
+
+	3){
+    		"statement": "Broccoli is a type of cruciferous vegetable.",
+   		 "trueStatement": "Correct! Broccoli is a type of cruciferous vegetable.",
+    		"falseStatement": "Incorrect. Broccoli is not a type of cruciferous 			vegetable.",
+    		"isTrue": true
+	}
+
+	4)"questions": [
+    		{ "id": 1, "text": "Apple" },
+   		 { "id": 2, "text": "Banana" },
+    		{ "id": 3, "text": "Carrot" },
+    		{ "id": 4, "text": "Broccoli" }
+		]
+
+
+ -------------------------------------------------------------------------------------------------------------------------------------------------------
+B)List the errors you found.
+	-1)Missing comma        "text": "Apple" in MCQ options
+	2)Extra double quote	"text": "Orange\"" in MCQ options
+	3)Missing comma	"statement": "Broccoli..." in True/False section
+	4)Missing comma between objects	"questions" array in Match Texts
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+C)Ensure that the corrected JSON file is valid and can be parsed without errors.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+D)Provide the corrected JSON file as your answer.
+
+{
+    "contents": [
+        {
+            "content_id": 71,
+            "section_id": 10,
+            "object_id": 16,
+            "content_type": "mcq",
+            "content": {
+                "question": "What is the most widely consumed fruit?",
+                "options": [
+                    {
+                        "text": "Apple",
+                        "explanation": "Correct! Apples are the most widely consumed fruit.",
+                        "isCorrect": true
+                    },
+                    {
+                        "text": "Banana",
+                        "explanation": "Incorrect. Bananas are a popular fruit, but not the most widely consumed.",
+                        "isCorrect": false
+                    },
+                    {
+                        "text": "Orange",
+                        "explanation": "Incorrect. Oranges are a popular citrus fruit.",
+                        "isCorrect": false
+                    }
+                ]
+            }
+        },
+        {
+            "content_id": 72,
+            "section_id": 10,
+            "object_id": 13,
+            "content_type": "truefalse",
+            "content": {
+                "statements": [
+                    {
+                        "id": 1,
+                        "statement": "Carrots are a type of fruit.",
+                        "trueStatement": "Incorrect. Carrots are a type of root vegetable.",
+                        "falseStatement": "Correct! Carrots are a type of root vegetable.",
+                        "isTrue": false
+                    },
+                    {
+                        "id": 2,
+                        "statement": "Broccoli is a type of cruciferous vegetable.",
+                        "trueStatement": "Correct! Broccoli is a type of cruciferous vegetable.",
+                        "falseStatement": "Incorrect. Broccoli is not a type of cruciferous vegetable.",
+                        "isTrue": true
+                    }
+                ]
+            }
+        },
+        {
+            "content_id": 73,
+            "section_id": 10,
+            "object_id": 12,
+            "content_type": "matchtexts",
+            "content": {
+                "questions": [
+                    { "id": 1, "text": "Apple" },
+                    { "id": 2, "text": "Banana" },
+                    { "id": 3, "text": "Carrot" },
+                    { "id": 4, "text": "Broccoli" }
+                ],
+                "answers": [
+                    { "id": 1, "text": "A type of fruit" },
+                    { "id": 2, "text": "A type of fruit that is often yellow" },
+                    { "id": 3, "text": "A type of root vegetable" },
+                    { "id": 4, "text": "A type of cruciferous vegetable" }
+                ]
+            }
+        },
+        {
+            "content_id": 74,
+            "section_id": 11,
+            "object_id": 17,
+            "content_type": "mcq",
+            "content": {
+                "question": "What is the most widely consumed vegetable?",
+                "options": [
+                    {
+                        "text": "Potato",
+                        "explanation": "Correct! Potatoes are the most widely consumed vegetable.",
+                        "isCorrect": true
+                    },
+                    {
+                        "text": "Tomato",
+                        "explanation": "Incorrect. Tomatoes are a popular fruit, often mistaken as a vegetable.",
+                        "isCorrect": false
+                    },
+                    {
+                        "text": "Cucumber",
+                        "explanation": "Incorrect. Cucumbers are a popular vegetable, but not the most widely consumed.",
+                        "isCorrect": false
+                    }
+                ]
+            }
+        }
+    ],
+    "totalCount": 4
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7)
+1)Create 3 separate MYSQL scripts for each content from the file.
+--- Script 1: Network Security Threats and Mitigation Strategies
+CREATE TABLE NetworkSecurityThreats (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    threat_name VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    mitigation_strategy TEXT NOT NULL
+);
+
+INSERT INTO NetworkSecurityThreats (threat_name, description, mitigation_strategy) VALUES
+('Phishing', 'A fraudulent attempt to obtain sensitive information.', 'Use email filtering and user awareness training.'),
+('DDoS Attack', 'Overloading a network with excessive requests.', 'Use traffic filtering and rate limiting.'),
+('Malware', 'Malicious software designed to disrupt systems.', 'Implement antivirus and regular system updates.');
+
+-- Script 2: Advanced Persistent Threats (APTs)
+CREATE TABLE APTs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    apt_name VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    detection_mechanisms TEXT NOT NULL
+);
+
+INSERT INTO APTs (apt_name, description, detection_mechanisms) VALUES
+('APT28', 'A Russian state-sponsored cyber espionage group.', 'Use behavior-based analytics and endpoint detection.'),
+('APT29', 'Advanced hacking group linked to intelligence agencies.', 'Employ network segmentation and threat intelligence.'),
+('APT41', 'A Chinese cybercriminal group with dual espionage and financial motives.', 'Use anomaly detection and proactive monitoring.');
+
+-- Script 3: Advanced Accounting Principles and Practices
+CREATE TABLE AccountingPrinciples (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    principle_name VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    application_area TEXT NOT NULL
+);
+
+INSERT INTO AccountingPrinciples (principle_name, description, application_area) VALUES
+('Accrual Principle', 'Revenues and expenses are recorded when incurred.', 'Financial reporting and auditing.'),
+('Consistency Principle', 'Accounting methods should be applied consistently.', 'Comparative financial analysis.'),
+('Conservatism Principle', 'Recognizing expenses and liabilities sooner rather than later.', 'Risk assessment and financial forecasting.');
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2)Each script should insert the data in their respective tables while inserting the LAST_INSERT_ID()in the content table, column: object_id.
+-INSERT INTO content (object_id, content_text)
+ VALUES (LAST_INSERT_ID(), 'This is the content for My First Object.');
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3)Explain how you cleaned the data and organized it in the particular format.
+-Identify the three distinct entities (tables) the data belongs to.
+-Removing Duplicates: Ensure that there are no duplicate entries for primary keys.
+-Identify primary keys and foreign keys for proper referencing.
+-Separate data into three distinct insert statements for respective tables.
+-Handling Null Values: If any field is missing, decide whether to fill it with default values or keep it NULL.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4)Share any scripts (python/JS/React/Express, etc) or REGEX you used. 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5)Would it be easier if you received the raw data is a particular format? If yes, what format would make your task easier? (Format like what the key value pairs in tha JSON should be, or any particular format for the JSON, anything you may want to add).
+-Yes, a structured format would make it easier to process the data
+-JSON (Best for complex data) – Since data is in JSON, just make sure it is neat and consistent. That means no missing brackets, no extra commas, and proper grouping of related information.
+
+-CSV (Best for tables) – If data is mostly questions with multiple choices, a CSV file (like an Excel sheet) works well. Each row can have a question, answer choices, and the correct     answer. A CSV (Comma-Separated Values) file is a simple file format used to store tabular data (like a spreadsheet or database).
+
+-Excel (Best for different sections) – an Excel file with separate sheets for each type would be the easiest way to organize it.
+
+
+
+
+
+
+
